@@ -1,16 +1,15 @@
 {
   "files": {
     "main.css": "/aquaopt/static/css/main.073c9b0a.css",
-    "main.js": "/aquaopt/static/js/main.2b73ab8f.js",
+    "main.js": "/aquaopt/static/js/main.06d720fd.js",
     "static/js/787.8c144245.chunk.js": "/aquaopt/static/js/787.8c144245.chunk.js",
-    "static/media/logo.svg": "/aquaopt/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/aquaopt/index.html",
     "main.073c9b0a.css.map": "/aquaopt/static/css/main.073c9b0a.css.map",
-    "main.2b73ab8f.js.map": "/aquaopt/static/js/main.2b73ab8f.js.map",
+    "main.06d720fd.js.map": "/aquaopt/static/js/main.06d720fd.js.map",
     "787.8c144245.chunk.js.map": "/aquaopt/static/js/787.8c144245.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.2b73ab8f.js"
+    "static/js/main.06d720fd.js"
   ]
 }
