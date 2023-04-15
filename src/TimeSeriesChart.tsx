@@ -34,7 +34,6 @@ interface IProps {
   title: string;
   min: number;
   max: number;
-  color: string;
 }
 
 const createLabels = (count: number): string[] => {
@@ -58,6 +57,31 @@ const options = {
     },
   },
 };
+
+export const TempChart: React.FunctionComponent = () => (
+  <TimeSeriesChart title="Water Temperature (C)" min={19} max={21} />
+);
+export const DOChart: React.FunctionComponent = () => (
+  <TimeSeriesChart title="DO Level (mg/L)" min={7.8} max={8.2} />
+);
+export const PHChart: React.FunctionComponent = () => (
+  <TimeSeriesChart title="pH Level" min={7} max={7.2} />
+);
+export const AmmoniaChart: React.FunctionComponent = () => (
+  <TimeSeriesChart title="Ammonia Level" min={0} max={1} />
+);
+export const NitrateChart: React.FunctionComponent = () => (
+  <TimeSeriesChart title="Nitrate Level" min={0} max={1} />
+);
+export const NitriteChart: React.FunctionComponent = () => (
+  <TimeSeriesChart title="Nitrite Level" min={0} max={1} />
+);
+export const ConductivityChart: React.FunctionComponent = () => (
+  <TimeSeriesChart title="Conductivity Level" min={0} max={1} />
+);
+export const SalinityChart: React.FunctionComponent = () => (
+  <TimeSeriesChart title="Salinity Level" min={7.8} max={8.2} />
+);
 
 export const TimeSeriesChart: React.FunctionComponent<IProps> = ({
   title,
