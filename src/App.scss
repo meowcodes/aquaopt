@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+}
+
+.App-Logo {
+  margin: 16px;
+  margin-left: 32px;
+  display: flex;
+  align-items: start;
+  img {
+    width: 120px;
+  }
+}
+
+.TimeSeriesChart {
+  margin: 16px;
+  .TimeSeriesChart-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 8px;
+  }
+}
