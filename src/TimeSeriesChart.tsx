@@ -11,6 +11,12 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
+import {
+  Box,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+} from "@mui/material";
 
 ChartJS.register(
   CategoryScale,
@@ -22,12 +28,13 @@ ChartJS.register(
   Legend
 );
 
+ChartJS.defaults.color = "rgb(239, 239, 239)";
+ChartJS.defaults.borderColor = "rgba(239, 239, 239, 0.25)";
 interface IProps {
-  labelCount?: number;
   title: string;
   min: number;
   max: number;
-  color:string;
+  color: string;
 }
 
 const createLabels = (count: number): string[] => {
@@ -40,41 +47,71 @@ const createLabels = (count: number): string[] => {
   return labels;
 };
 
-const oneHourLabels = createLabels(60);
+const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "bottom" as const,
+    },
+    title: {
+      display: true,
+    },
+  },
+};
 
 export const TimeSeriesChart: React.FunctionComponent<IProps> = ({
-  labelCount = 60,
   title,
   min,
   max,
-  color
 }) => {
-  const labels = createLabels(labelCount);
+  const [labelCount, setLabelCount] = React.useState<number>(60);
+  const [dataset, setDataset] = React.useState<number[]>([]);
+  const [labels, setLabels] = React.useState<string[]>([]);
+
+  React.useEffect(() => {
+    setLabels(createLabels(labelCount));
+  }, [labelCount]);
+  React.useEffect(() => {
+    setDataset(labels.map(() => faker.datatype.float({ min, max })));
+  }, [labels, max, min]);
+
   const data = {
     labels: labels,
     datasets: [
       {
         label: title,
-        data: oneHourLabels.map(() => faker.datatype.float({ min, max })),
-        borderColor: color,
-        // backgroundColor: "rgba(255, 99, 132, 0.5)",
+        data: dataset,
+        borderColor: "#37d3bd",
+        borderWidth: 1,
       },
     ],
   };
 
-  const options = {
-    // responsive: true,
-    plugins: {
-      legend: {
-        position: "bottom" as const,
-      },
-      title: {
-        display: true,
-        text: title,
-      },
-    },
+  const handleToggle = (
+    event: React.MouseEvent<HTMLElement>,
+    newCount: number
+  ) => {
+    setLabelCount(newCount);
   };
 
-  console.log(options);
-  return <Line options={options} data={data} />;
+  return (
+    <div className="TimeSeriesChart">
+      <div className="TimeSeriesChart-top">
+        <Typography>{title}</Typography>
+        <ToggleButtonGroup
+          color="primary"
+          value={labelCount}
+          exclusive
+          onChange={handleToggle}
+          aria-label="count"
+          size="small"
+        >
+          <ToggleButton value={60}>1 Hour</ToggleButton>
+          <ToggleButton value={60 * 3}>3 Hours</ToggleButton>
+          <ToggleButton value={60 * 24}>1 Day</ToggleButton>
+        </ToggleButtonGroup>
+      </div>
+      <Line options={options} data={data} />
+    </div>
+  );
 };
