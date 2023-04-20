@@ -17,6 +17,7 @@ import {
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
+import { getCSSvar } from "./util";
 
 ChartJS.register(
   CategoryScale,
@@ -34,6 +35,7 @@ interface IProps {
   title: string;
   min: number;
   max: number;
+  colorString: string;
 }
 
 const createLabels = (count: number): string[] => {
@@ -59,34 +61,70 @@ const options = {
 };
 
 export const TempChart: React.FunctionComponent = () => (
-  <TimeSeriesChart title="Water Temperature (C)" min={19} max={21} />
+  <TimeSeriesChart
+    title="Water Temperature (C)"
+    min={19}
+    max={21}
+    colorString="temp"
+  />
 );
 export const DOChart: React.FunctionComponent = () => (
-  <TimeSeriesChart title="DO Level (mg/L)" min={7.8} max={8.2} />
+  <TimeSeriesChart
+    title="DO Level (mg/L)"
+    min={7.8}
+    max={8.2}
+    colorString="do"
+  />
 );
 export const PHChart: React.FunctionComponent = () => (
-  <TimeSeriesChart title="pH Level" min={7} max={7.2} />
+  <TimeSeriesChart title="pH Level" min={7} max={7.2} colorString="ph" />
 );
 export const AmmoniaChart: React.FunctionComponent = () => (
-  <TimeSeriesChart title="Ammonia Level" min={0} max={1} />
+  <TimeSeriesChart
+    title="Ammonia Level"
+    min={0}
+    max={1}
+    colorString="ammonia"
+  />
 );
 export const NitrateChart: React.FunctionComponent = () => (
-  <TimeSeriesChart title="Nitrate Level" min={0} max={1} />
+  <TimeSeriesChart
+    title="Nitrate Level"
+    min={0}
+    max={1}
+    colorString="nitrate"
+  />
 );
 export const NitriteChart: React.FunctionComponent = () => (
-  <TimeSeriesChart title="Nitrite Level" min={0} max={1} />
+  <TimeSeriesChart
+    title="Nitrite Level"
+    min={0}
+    max={1}
+    colorString="nitrite"
+  />
 );
 export const ConductivityChart: React.FunctionComponent = () => (
-  <TimeSeriesChart title="Conductivity Level" min={0} max={1} />
+  <TimeSeriesChart
+    title="Conductivity Level"
+    min={0}
+    max={1}
+    colorString="conductivity"
+  />
 );
 export const SalinityChart: React.FunctionComponent = () => (
-  <TimeSeriesChart title="Salinity Level" min={7.8} max={8.2} />
+  <TimeSeriesChart
+    title="Salinity Level"
+    min={7.8}
+    max={8.2}
+    colorString="salinity"
+  />
 );
 
 export const TimeSeriesChart: React.FunctionComponent<IProps> = ({
   title,
   min,
   max,
+  colorString,
 }) => {
   const [labelCount, setLabelCount] = React.useState<number>(60);
   const [dataset, setDataset] = React.useState<number[]>([]);
@@ -105,7 +143,7 @@ export const TimeSeriesChart: React.FunctionComponent<IProps> = ({
       {
         label: title,
         data: dataset,
-        borderColor: "#37d3bd",
+        borderColor: getCSSvar(`--color-${colorString}`),
         borderWidth: 1,
       },
     ],

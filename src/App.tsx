@@ -1,7 +1,6 @@
 import React from "react";
 import logo from "./Logo.png";
 import "./App.scss";
-import { DOChart, TempChart } from "./TimeSeriesChart";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { Dashboard } from "./Dashboard";
 
