@@ -85,9 +85,14 @@ export const Dashboard: React.FunctionComponent<IProps> = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} lg={6} xl={4}>
+      {/* <Grid item xs={12} lg={6} xl={4}>
         <TempChart />
-      </Grid>
+      </Grid> */}
+      {chartTypes.map((chart) => (
+        <Grid item xs={12} lg={6} xl={4}>
+          {getChart(chart)}
+        </Grid>
+      ))}
       {charts.map((chart) => (
         <Grid item xs={12} lg={6} xl={4}>
           {getChart(chart)}
